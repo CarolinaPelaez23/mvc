@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Inicio</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <!--Comentarios-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-<h1>Inicio</h1>
-<p>Esto es un ejemplo</p>
+    <div th:fragment="menu">
+        <h1>Menu</h1>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/usuarios/list}">Usuarios</a>
+        <a th:href="@{/usuarios/modificar}">Crear Usuario</a>
+        <a>Empresas</a>
+        <a>Movimientos</a>
+    </div>
+    <footer th:fragment="footer" class="fixed-bottom">
+        <small>Desarrollado por Carolina</small>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    </footer>
 </body>
 </html>

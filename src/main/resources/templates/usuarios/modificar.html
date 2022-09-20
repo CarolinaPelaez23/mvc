@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index :: head">
+    <meta charset="UTF-8">
+    <title>Crear usuario</title>
+</head>
+<body>
+    <h1 th:text="${titulo}"></h1>
+    <div th:replace="index :: menu"></div>
+
+    <form method="post" th:action="@{/guardar}" th:object="${usuario}">
+        <div>
+            <input type="hidden" name="idUsuario" th:field="*{idUsuario}">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" th:field="*{nombre}">
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error nombre</span>
+        </div>
+        <div>
+            <label for="apellido">Apellido</label>
+            <input type="text" name="apellido" th:field="*{apellido}">
+            <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error apellido</span>
+        </div>
+        <div>
+            <label for="rol">Rol </label>
+            <select th:field="*{rol.idRol}">
+                <option value="0" selected>Selecione un rol:</option>
+                <option th:each="rol:${roles}"
+                        th:value="${rol.idRol}"
+                        th:text="${rol.descripcion}">
+
+                </option>
+            </select>
+        </div>
+        <div>
+            <label for="tipoDocumento">Tipo Documento </label>
+            <select th:field="*{tipoDocumento.idTipoDocumento}" name="tipoDocumento">
+                <option value="0" selected>Selecione tipo de documento:</option>
+                <option th:each="tipoDocumento:${tipo_documento}"
+                        th:value="${tipoDocumento.idTipoDocumento}"
+                        th:text="${tipoDocumento.descripcion}">
+
+                </option>
+            </select>
+        </div>
+        <div>
+            <label for="perfil">Perfil </label>
+            <select th:field="*{perfil}" name="perfil">
+                <option value="" selected>Selecione el perfil:</option>
+                <option th:each="perfil:${T(ciclo3.mbc.entities.Perfil).values()}"
+                        th:value="${perfil}"
+                        th:text="${perfil}">
+
+                </option>
+            </select>
+        </div>
+        <div>
+            <label for="correo">Correo</label>
+            <input type="email" name="correo" th:field="*{correo}">
+            <span th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">Error correo</span>
+        </div>
+        <div>
+            <label for="clave">Contraseña</label>
+            <input type="password" name="clave" th:field="*{clave}">
+            <span th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}">Error clave</span>
+        </div>
+        <div>
+            <label for="cedula">Cedula</label>
+            <input type="text" name="cedula" th:field="*{cedula}">
+            <span th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}">Error cédula</span>
+        </div>
+        <div>
+            <input type="submit" name="guardar" value="guardar" >
+        </div>
+    </form>
+    <footer th:replace="index :: footer"></footer>
+</body>
+</html>
